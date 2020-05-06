@@ -405,3 +405,29 @@ class Long2ShortUrl{
     }
 }
 
+class ShortDomain{
+    private $curl_url='';
+    function __construct($appid,$appkey){
+        $this->curl_url=(new BuSiNiaoApi($appid,$appkey))->get_url(BUSINIAO_API_TYPE_ShortDomain);
+        
+    }
+    
+    function lists($layer_type=null,$status=null,$page=1,$rows=50){
+        $postArr['type']='list';
+        if($layer_type!=""){
+            $postArr['layer_type']=$layer_type;
+        }
+        if(is_numeric($status)){
+            $postArr['status']=$status;
+        }
+        $postArr['page']=$page;
+        $postArr['rows']=$rows;
+        return $this->curl($postArr);
+    }
+    
+    private function curl($postArr){
+        $curl=new ApiCurlLib($this->curl_url,[],$postArr);
+        return $curl->curl();
+    }
+}
+

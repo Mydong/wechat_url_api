@@ -13,3 +13,4 @@ define('BUSINIAO_API_TYPE_CheckIp','CheckIp.json');
 define('BUSINIAO_API_TYPE_UrlCheck','UrlCheck.json');
 define('BUSINIAO_API_TYPE_UrlCycleCheck','UrlCycleCheck.json');
 define('BUSINIAO_API_TYPE_Long2ShortUrl','Long2ShortUrl.json');
+define('BUSINIAO_API_TYPE_ShortDomain','ShortDomain.json');
