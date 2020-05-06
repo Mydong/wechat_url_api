@@ -19,6 +19,8 @@ composer require goodyes/wechat_url_check_preventing_blocked_api
 
 ##### SingleShortUrl_example.php 功能:任意网址防封相关接口案例
 
+##### ShortDomain_example.php 功能:获取短网址域名列表
+
 ##### Long2ShortUrl_example.php 功能:长网址转短网址接口案例
 
 ##### UrlCheck_example.php 功能:网址实时检测是否被红案例

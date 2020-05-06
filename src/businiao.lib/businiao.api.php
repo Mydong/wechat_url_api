@@ -90,7 +90,7 @@ class CheckIp{
         $postArr=array_merge($postArr,$this->more_header());
         return $this->curl($postArr);
     }
-    //由于单独有个header已经无法准确获取真实ip。以下信息帮助我们精准获取访问者的ip地址
+    //由于单独1个header已经无法准确获取真实ip。以下信息帮助我们精准获取访问者的ip地址
     private function more_header(){
         $post=[];
         $keys=[
