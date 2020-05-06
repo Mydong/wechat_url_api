@@ -34,10 +34,10 @@ print_r(json_decode($edit_result,true));
 
 
 
-//删除，上面新添加的这里马上就会被删除，请自行注释下面代码
+//删除，上面新添加的这里马上就会被删除，请自行注释下面代码  http://www.baidu.com可以换成id编号
 echo "<br>------------------下面是删除监控返回结果---------------------------------<br>\n";
-$delete_result=$SingleShortUrl->delete('http://www.baidu.com');
-print_r(json_decode($delete_result,true));
+//$delete_result=$SingleShortUrl->delete('http://www.baidu.com');
+//print_r(json_decode($delete_result,true));
 
 
 //获取列表

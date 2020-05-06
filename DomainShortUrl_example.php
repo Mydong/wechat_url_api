@@ -36,7 +36,7 @@ print_r(json_decode($edit_result,true));
 
 
 
-//删除，请自己解除下面2段代码注释
+//删除，请自己解除下面2段代码注释  http://www.baidu.com可以换成id编号
 echo "<br>------------------下面是删除监控返回结果---------------------------------<br>\n";
 //$delete_result=$DomainShortUrl->delete('http://www.baidu.com');
 //print_r(json_decode($delete_result,true));

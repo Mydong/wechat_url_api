@@ -11,7 +11,7 @@ composer require goodyes/wechat_url_check_preventing_blocked_api
 
 ### 不死鸟微信/QQ防封杀系统是适应当下微信封杀规则,开发的一整套防封杀解决方案：
 
-##### CheckIp_example.php 功能:屏蔽中国最大的社交聊天软件所在公司以及其他厂商的云端IP检测
+##### CheckIp_example.php 功能:屏蔽中国最大的社交聊天软件所在公司以及其他厂商的云端IP检测(我们强烈建议你的网站使用https协议)
 
 ##### splice_url_anyurl.php 功能:自定义参数传递(无需api,即可实现防封)
 
