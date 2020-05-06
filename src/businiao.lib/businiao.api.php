@@ -26,14 +26,14 @@ class UrlCycleCheck{
     /** 添加
      * 
      * **/
-    function add($url,int $frequency,$is_monitor=false){
+    function add($url,$frequency,$is_monitor=false){
         $postArr['type']='add';
         $postArr['url']=$url;
         $postArr['is_monitor']=$is_monitor;
         $postArr['frequency']=$frequency;
         return $this->curl($postArr);
     }
-    function edit($url,int $frequency=null,bool $is_monitor=null){
+    function edit($url,$frequency=null,bool $is_monitor=null){
         $postArr['type']='edit';
         $postArr['url']=$url;
         $postArr['is_monitor']=$is_monitor;
@@ -45,7 +45,7 @@ class UrlCycleCheck{
         $postArr['url']=$url;
         return $this->curl($postArr);
     }
-    function list(int $page=1,int $rows=10){
+    function lists($page=1,$rows=10){
         $postArr['type']='list';
         $postArr['page']=$page;
         $postArr['rows']=$rows;
@@ -73,21 +73,51 @@ class CheckIp{
     }
     /**
      * $ip:ipv4
-     * $search_range:可以是 369,tencent,jinshan,baidu;多个 请用逗号隔开。
+     * $search_range:可以是 360,tencent,jinshan,baidu,albaba;多个 请用逗号隔开。
      * 具体查看官方接口https://wechaturl.gitbook.io/wechaturl/check_ip
      */
     function CheckIp($ip=null,$search_range=''){
         if($ip==''){
             $ip=$this->get_real_client_ip();
+        }else{
+            $postArr['test_ip']=$ip;//为了避开more_header()判断准确问题，这个单独传一个test_ip
         }
         $postArr['ip']=$ip;
-        $postArr['user_agent']=$_SERVER['HTTP_USER_AGENT'];
-        $postArr['referer']=$_SERVER['HTTP_REFERER'];
-        $postArr['current_url']=$_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        
         if($search_range!=""){
             $postArr['search_range']=$search_range;
         }
+        $postArr=array_merge($postArr,$this->more_header());
         return $this->curl($postArr);
+    }
+    //由于单独有个header已经无法准确获取真实ip。以下信息帮助我们精准获取访问者的ip地址
+    private function more_header(){
+        $post=[];
+        $keys=[
+            'HTTP_CF_VISITOR',//Cloudflare scheme
+            'HTTP_CF_CONNECTING_IP',//Cloudflare
+            'HTTP_X_REAL_IP',//nginx
+            'HTTP_X_FORWARDED_FOR',//nginx
+            'HTTP_X_CLIENT_SCHEME',//aliyun cdn scheme
+            'HTTP_ALI_CDN_REAL_IP',//aliyun cdn ip
+            'REMOTE_ADDR',//原生的ip
+            'REQUEST_SCHEME',//原生scheme
+            'HTTP_X_PHOENIX_SCHEME',//不死鸟自定义scheme
+            'HTTP_CLIENTIP',//不死鸟自定义ip
+            'HTTP_USER_AGENT',//user-agent
+            'HTTP_REFERER'//来路
+        ];
+        foreach ($keys as $key){
+            if(isset($_SERVER[$key])){
+                $post[$key]=$_SERVER[$key];
+            }
+        }
+        $post['current_url']=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        if(isset($_COOKIE['phonix_ipcheck'])){
+            $post['phonix_ipcheck']=$_COOKIE['phonix_ipcheck'];//为了防止部分客户没有使用session导致伺服器压力，因此同时我们也同时以cookies作为补充
+        }
+        
+        return $post;
     }
     private function curl($postArr){
         $curl=new ApiCurlLib($this->curl_url,[],$postArr);
@@ -115,6 +145,7 @@ class CheckIp{
         }
         return $real_client_ip;
     }
+
     //检查下内网ip
     private function check_intranet_ip($ip){
         if(!IS_CHECK_INTRANET_IP){
@@ -198,7 +229,7 @@ class SingleShortUrl{
         }
         return $this->curl($postArr);
     }
-    function list($url=null,int $page=1,int $rows=10){
+    function lists($url=null,$page=1,$rows=10){
         $postArr['type']='list';
         if($url!=null){
             $postArr['url']=$url;
@@ -277,7 +308,7 @@ class DomainShortUrl{
         
         return $this->curl($postArr);
     }
-    function list($url=null,$group_id=null,int $page=1,int $rows=10){
+    function lists($url=null,$group_id=null,$page=1,$rows=10){
         $postArr['type']='list';
         if($url!=null){
             $postArr['url']=$url;
@@ -320,7 +351,7 @@ class UrlCheck{
         return $curl->curl();
     }
 }
-class GetWechatShortUrl{
+/* class GetWechatShortUrl{
     private $curl_url='';
     function __construct($appid,$appkey){
         $this->curl_url=(new BuSiNiaoApi($appid,$appkey))->get_url(BUSINIAO_API_TYPE_GetWechatShortUrl);
@@ -335,9 +366,9 @@ class GetWechatShortUrl{
         $curl=new ApiCurlLib($this->curl_url,[],$postArr);
         return $curl->curl();
     }
-}
+} */
 
-class GetWeiboShortUrl{
+/* class GetWeiboShortUrl{
     private $curl_url='';
     function __construct($appid,$appkey){
         $this->curl_url=(new BuSiNiaoApi($appid,$appkey))->get_url(BUSINIAO_API_TYPE_GetWeiboShortUrl);
@@ -353,4 +384,24 @@ class GetWeiboShortUrl{
         $curl=new ApiCurlLib($this->curl_url,[],$postArr);
         return $curl->curl();
     }
+} */
+
+class Long2ShortUrl{
+    private $curl_url='';
+    function __construct($appid,$appkey){
+        $this->curl_url=(new BuSiNiaoApi($appid,$appkey))->get_url(BUSINIAO_API_TYPE_Long2ShortUrl);
+        
+    }
+    
+    function get($url,$entry_type='default'){
+        $postArr['url']=$url;
+        $postArr['entry_type']=$entry_type;
+        return $this->curl($postArr);
+    }
+    
+    private function curl($postArr){
+        $curl=new ApiCurlLib($this->curl_url,[],$postArr);
+        return $curl->curl();
+    }
 }
+

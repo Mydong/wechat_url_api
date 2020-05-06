@@ -44,7 +44,7 @@ echo "<br>------------------下面是删除监控返回结果-------------------
 
 //获取列表
 echo "<br>------------------下面是获取列表---------------------------------<br>\n";
-$list_result=$DomainShortUrl->list();
+$list_result=$DomainShortUrl->lists();
 print_r(json_decode($list_result,true));
 
 //超高频率检测是否被封,api调用不受到任何时间限制

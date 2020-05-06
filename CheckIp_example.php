@@ -5,7 +5,8 @@ include_once 'src/businiao.lib/businiao.lib.php';
 $appid='12345678';
 $appkey='GetAppKeyAtThe:https://www.wechaturl.us'; 
 //本功能的作用是屏蔽厂商的云端检测功能
-//如果你的网站是多页面,为了让某个用户访问时候只检测一次,所以我们需要启动session
+//如果你的网站是多页面,为了让某个用户访问时候只检测一次,所以我们需要启动session;如果你的session有问题，你可以自己动手改成cookie
+//这里有对api详细的介绍https://wechaturl.gitbook.io/wechaturl/check_ip
 session_start();
 $CheckIpResult=null;
 if(!isset($_SESSION['CheckIpResult'])){
@@ -17,6 +18,7 @@ if(!isset($_SESSION['CheckIpResult'])){
             exit($CheckIpResult['message']);
         }
         $_SESSION['CheckIpResult']=$CheckIpResult;
+        setcookie("phonix_ipcheck", $data, time()+1800);
     }
 }else{
     $CheckIpResult=$_SESSION['CheckIpResult'];

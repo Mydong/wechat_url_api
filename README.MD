@@ -1,9 +1,8 @@
 ## api完整教程镜像版 https://wechaturl.gitbook.io/
 
 ```shell
-注意:php版本必须是php 7.* 或以上
 如果你采用composer安装，复制下面的即可
-composer require goodyes/wechat_url_check_preventing_blocked_api ^1.1.0
+composer require goodyes/wechat_url_check_preventing_blocked_api
 #https://packagist.org/packages/goodyes/wechat_url_check_preventing_blocked_api
 ```
 # 不死鸟微信防封杀系统免费版
@@ -20,9 +19,11 @@ composer require goodyes/wechat_url_check_preventing_blocked_api ^1.1.0
 
 ##### SingleShortUrl_example.php 功能:任意网址防封相关接口案例
 
-##### UrlCheck.GetWeiboUrl.GetWechatUrl_example.php 功能:网址实时检测是否被红.将长网址转短网址
+##### Long2ShortUrl_example.php 功能:长网址转短网址接口案例
 
-##### UrlCycleCheck_example.php 功能:管理网址检测
+##### UrlCheck_example.php 功能:网址实时检测是否被红案例
+
+##### UrlCycleCheck_example.php 功能:管理网址检测案例
 
 
 ####  一、查询功能
@@ -87,17 +88,17 @@ composer require goodyes/wechat_url_check_preventing_blocked_api ^1.1.0
 当你下载源码，可以看到以上功能的演示
 
 
-UrlCheck.GetWeiboUrl.GetWechatUrl_example.php
+UrlCheck_example.php
 
 ```php
 <?php
-//include 'vendor/autoload.php';
-include_once 'businiao.lib/businiao.lib.php';
+include_once 'src/businiao.lib/businiao.lib.php';
+//require_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 $appid='12345678';
 $appkey='GetAppKeyAtThe:https://www.wechaturl.us';
 
 /**
- * 返回code代码汇总：https://wechaturl.gitbook.io/wechaturl/code_summary
+ * 返回code代码汇总：https://wechaturl.gitbook.io/
  * 本案例做了3个功能
  * 1.微信url检测状态
  * 2.获取微信短网址
@@ -105,24 +106,11 @@ $appkey='GetAppKeyAtThe:https://www.wechaturl.us';
  * */
 $url='https://www.baidu.com';
 /**微信url检测状态
- * api详细帮助：https://wechaturl.gitbook.io
+ * api详细帮助：https://wechaturl.gitbook.io/
  * 
  * */
 $UrlCheck_result=(new UrlCheck($appid,$appkey))->get($url);
 print_r(json_decode($UrlCheck_result,true));
-
-/**获取微信短网址
- * https://wechaturl.gitbook.io
- * */
-$GetWechatShortUrl_result=(new GetWechatShortUrl($appid,$appkey))->get($url);
-print_r(json_decode($GetWechatShortUrl_result,true));
-
-/**获取微博短网址
- * 
- * https://wechaturl.gitbook.io
- * **/
-$GetWeiboShortUrl_result=(new GetWeiboShortUrl($appid,$appkey))->get($url);
-print_r(json_decode($GetWeiboShortUrl_result,true));
 ```
 
 UrlCycleCheck_example.php

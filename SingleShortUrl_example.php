@@ -42,7 +42,7 @@ print_r(json_decode($delete_result,true));
 
 //获取列表
 echo "<br>------------------下面是获取列表---------------------------------<br>\n";
-$list_result=$SingleShortUrl->list();
+$list_result=$SingleShortUrl->lists();
 print_r(json_decode($list_result,true));
 
 

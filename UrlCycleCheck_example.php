@@ -50,7 +50,7 @@ print_r(json_decode($delete_result,true));
 
 //获取列表
 echo "<br>------------------下面是监控列表---------------------------------<br>\n";
-$list_result=$UrlCycleCheck->list();
+$list_result=$UrlCycleCheck->lists();
 print_r(json_decode($list_result,true));
 
 

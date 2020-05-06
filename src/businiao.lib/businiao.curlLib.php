@@ -83,8 +83,6 @@ class ApiCurlLib {
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS,$this->postArr);
         }
-
-        
         for($i=0;$i<count($customize_config);$i++){
             curl_setopt($ch, $customize_config[$i][0],$customize_config[$i][1]);
         }

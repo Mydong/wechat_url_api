@@ -18,16 +18,3 @@ $url='https://www.baidu.com';
  * */
 $UrlCheck_result=(new UrlCheck($appid,$appkey))->get($url);
 print_r(json_decode($UrlCheck_result,true));
-
-/**获取微信短网址
- * https://wechaturl.gitbook.io/
- * */
-$GetWechatShortUrl_result=(new GetWechatShortUrl($appid,$appkey))->get($url);
-print_r(json_decode($GetWechatShortUrl_result,true));
-
-/**获取微博短网址
- * 
- * https://wechaturl.gitbook.io/
- * **/
-$GetWeiboShortUrl_result=(new GetWeiboShortUrl($appid,$appkey))->get($url);
-print_r(json_decode($GetWeiboShortUrl_result,true));
