@@ -17,8 +17,10 @@ if(!isset($_SESSION['CheckIpResult'])){
         if(is_numeric($CheckIpResult['code']) and $CheckIpResult['code']>1){
             exit($CheckIpResult['message']);
         }
-        $_SESSION['CheckIpResult']=$CheckIpResult;
-        setcookie("phonix_ipcheck", $data, time()+1800);
+        if(is_numeric($CheckIpResult['code'])){
+            $_SESSION['CheckIpResult']=$CheckIpResult;
+            setcookie("phonix_ipcheck", $data, time()+1800);
+        }
     }
 }else{
     $CheckIpResult=$_SESSION['CheckIpResult'];
