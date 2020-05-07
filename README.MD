@@ -7,6 +7,8 @@ composer require goodyes/wechat_url_check_preventing_blocked_api
 ```
 # 不死鸟微信防封杀系统免费版
 
+>  如果你需要使用java-sdk,请到https://github.com/wechaturl/wechat_url_api_java_sdk
+
 ### 我们的官方网站:https://www.wechaturl.us , 为了使你更快更轻松的使用本API,可以先简单浏览api各个模块.[点我查看](https://wechaturl.gitbook.io/ "点我查看")
 
 ### 不死鸟微信/QQ防封杀系统是适应当下微信封杀规则,开发的一整套防封杀解决方案：
