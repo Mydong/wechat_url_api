@@ -19,7 +19,8 @@ $group_id=0;
 $visit_type='browser';
 
 //如果希望把qq右上角菜单隐藏，则true,否则false;
-$is_hide_qq_menu=true;
+//不过由最新的观察总结发现,is_hide_qq_menu=1 容易被红。因此我们不建议这么去操作
+$is_hide_qq_menu=0;
 
 $urlanyurl=new UrlAnyurl($appid,$appkey,$request_uri,$visit_type,$group_id);
 //确保./ShortDomainData文件可以写入.文件保存位置请自己更换
