@@ -285,3 +285,14 @@ print_r(json_decode($list_result,true));
 
 
 ```
+
+
+### Communicate with us 和我们一起交流
+
+> Telegram: @weixinfangfeng :https://t.me/weixinfangfeng
+
+> skype: https://join.skype.com/invite/wU9pVGpzmpQs
+
+### Legal provisions 法律条款
+
+> [ application blacklist legal 应用黑名单法律规定 ](https://wechaturl.gitbook.io/wechaturl/end/blanklist)
