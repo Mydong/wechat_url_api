@@ -1,0 +1,1 @@
+Because of the special policies of the Chinese government. And a large number of Chinese people cheat to use our system, so we prohibit Chinese people in China using our system. Starting today(2019-09), all IPs from China have been permanently suspended
